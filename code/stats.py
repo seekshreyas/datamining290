@@ -2,6 +2,8 @@
 """This script can be used to analyze data in the 2012 Presidential Campaign,
 available from http://www.fec.gov/disclosurep/PDownload.do"""
 
+## TODO: add my own script here
+
 import fileinput
 import csv
 
