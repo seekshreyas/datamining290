@@ -1,6 +1,8 @@
 from mrjob.job import MRJob
 from mrjob.protocol import JSONValueProtocol
 
+## to do:: mr job assignment
+
 class UserSimilarity(MRJob):
     INPUT_PROTOCOL = JSONValueProtocol
 
