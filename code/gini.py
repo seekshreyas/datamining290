@@ -49,17 +49,27 @@ for row in csv.reader(fileinput.input()):
      
 
 # print elecDonations['obama']
-## printing the Gini Index of Candidate Names 
+## printing the Gini Index of Candidate Names
+totalDonationNum = 0
 for candidate in elecDonations:
-	print candidate, len(elecDonations[candidate])
+	totalDonationNum = totalDonationNum + len(elecDonations[candidate])
+	# print candidate, len(elecDonations[candidate])
 
+sumfrac = 0
+for candidate in elecDonations:
+	frac = float(len(elecDonations[candidate])) / float(totalDonationNum)
+	frac = frac ** 2
 
+	print candidate, frac
+	sumfrac = sumfrac + frac
 
 ###
 # TODO: calculate the values below:
-gini = 0  # current Gini Index using candidate name as the class
+
+gini = 1- sumfrac  # current Gini Index using candidate name as the class
 split_gini = 0  # weighted average of the Gini Indexes using candidate names, split up by zip code
 ##/
 
+print "Total Donations %s" % totalDonationNum
 print "Gini Index: %s" % gini
 print "Gini Index after split: %s" % split_gini
