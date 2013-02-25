@@ -17,7 +17,7 @@ receipt_desc, memo_cd, memo_text, form_tp, file_num, tran_id, election_tp) = ran
 ############### Read through files
 
 ## defining a dictionary data structure for holding candidate data
-elecDonations = {'candidate' : '', 'donationFrom' :''}
+elecDonations = {}
 
 
 for row in csv.reader(fileinput.input()):
@@ -28,18 +28,32 @@ for row in csv.reader(fileinput.input()):
         #row[cand_nm], row[contbr_zip]
         ##/
         # cand = row[cand_nm]
+        
+        ## zip codes normalization (I a guessing the characters after 6 digits
+        ## are for the post box which we dont need). 
+        ## So I will just slice them off
+		# zipCode = row[contbr_zip]
 
         ## candidate name normalization
-        candName = row[cand_nm].split(',')[0] #take only the last name
-        candName = candName.lower() # convert to lowercase
+        # take only last name and covert to lowercase
+        candName = row[cand_nm].split(',')[0].lower()
+        zipCode = row[contbr_zip]
+        zipCode = zipCode[0:6]
 
-        if 'candName' in elecDonations:
-        	elecDonations[candName].append(row[contbr_zip])
+       
+        if candName in elecDonations:
+        	elecDonations[candName].append(zipCode)
         else:
-        	elecDonations[candName] = row[contbr_zip]
+        	elecDonations.setdefault(candName, []).append(zipCode)
+        	
+     
+
+# print elecDonations['obama']
+## printing the Gini Index of Candidate Names 
+for candidate in elecDonations:
+	print candidate, len(elecDonations[candidate])
 
 
-print elecDonations.keys()
 
 ###
 # TODO: calculate the values below:
