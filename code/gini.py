@@ -18,7 +18,7 @@ receipt_desc, memo_cd, memo_text, form_tp, file_num, tran_id, election_tp) = ran
 
 ## defining a dictionary data structure for holding candidate data
 elecDonations = {}
-
+zips = []
 
 for row in csv.reader(fileinput.input()):
     if not fileinput.isfirstline():
@@ -40,6 +40,8 @@ for row in csv.reader(fileinput.input()):
         zipCode = row[contbr_zip]
         zipCode = zipCode[0:6]
 
+        if not zipCode in zips:
+        	zips.append(zipCode) # creates a distinct list of all zip codes
        
         if candName in elecDonations:
         	elecDonations[candName].append(zipCode)
@@ -62,6 +64,17 @@ for candidate in elecDonations:
 
 	print candidate, "%.2f of total" % frac
 	sumfrac = sumfrac + frac
+
+
+zfrac = 0
+for z in zips:
+	for name in elecDonations:
+		num = elecDonations[name].count(z)
+		zfrac = zfrac + (float(num) / float(len(zips)))**2
+
+	print "Gini Index for zip:", z, "is", (1-zfrac)
+
+
 
 ###
 # TODO: calculate the values below:
