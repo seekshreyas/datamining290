@@ -60,7 +60,7 @@ for candidate in elecDonations:
 	frac = float(len(elecDonations[candidate])) / float(totalDonationNum)
 	frac = frac ** 2
 
-	print candidate, frac
+	print candidate, "%.2f of total" % frac
 	sumfrac = sumfrac + frac
 
 ###
@@ -71,5 +71,5 @@ split_gini = 0  # weighted average of the Gini Indexes using candidate names, sp
 ##/
 
 print "Total Donations %s" % totalDonationNum
-print "Gini Index: %s" % gini
+print "Gini Index: %.2f " % gini
 print "Gini Index after split: %s" % split_gini
