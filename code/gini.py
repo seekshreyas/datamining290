@@ -36,7 +36,7 @@ for row in csv.reader(fileinput.input()):
 
         ## candidate name normalization
         # take only last name and covert to lowercase
-        candName = row[cand_nm].split(',')[0].lower()
+        candName = row[cand_nm].split(",")[0].lower()
         zipCode = row[contbr_zip]
         zipCode = zipCode[0:6]
 
@@ -50,7 +50,7 @@ for row in csv.reader(fileinput.input()):
         	
      
 
-# print elecDonations['obama']
+# print elecDonations["obama"]
 ## printing the Gini Index of Candidate Names
 totalDonationNum = 0
 for candidate in elecDonations:
