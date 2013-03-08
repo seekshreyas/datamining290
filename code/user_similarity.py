@@ -23,7 +23,7 @@ class UserSimilarity(MRJob):
         for i, user_def in enumerate(all_user_defs):
             for compare_def in all_user_defs[i+1:]:
                 score = jaccard(user_def[1], compare_def[1])
-                if score > 0.5:
+                if score >= 0.5:
                     yield [[min(user_def[0], compare_def[0]),
                             max(user_def[0], compare_def[0])],
                            score]
