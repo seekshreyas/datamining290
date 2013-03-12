@@ -3,6 +3,8 @@
 #
 ##/
 
+from random import choice
+
 dataset = [-13.65089255716321, -0.5409562932238607, -88.4726466247223, 39.30158828358612, 4.066458182574449, 64.64143300482378, 38.68269424751338, 33.42013676314311, 31.18603331719732, -0.2027616409406292, 45.13590038987272, 30.791899783552395, 61.1727490302448, 18.167220741624856, 88.88077709786394, -1.3808002119514704, 50.14991362212521, 55.92029956281276, -6.759813255299466, 34.28290084421072]
 k = 2 # number of clusters
 
@@ -13,23 +15,41 @@ k = 2 # number of clusters
 
 def pick_centroids(xs, num):
     """Return list of num centroids given a list of numbers in xs"""
+    coord1 = choice(xs)
+    coord2 = coord1
+
+    while (coord2 == coord1):
+        coord2 = choice(xs)
+
+    print "centroids picked: %s %s" % (coord1, coord2)
     ###
     # TODO select and return centroids
-    return [1,2]
+    return [coord1, coord2]
     ##/
 
 def distance(a, b):
     """Return the distance of numbers a and b"""
+    dist = ((a-b)**2)**0.5
     ###
     # TODO return correct expression
-    return 0
+    return dist
     ##/
 
 def centroid(xs):
     """Return the centroid number given a list of numbers, xs"""
+
+    # print "legth of list", len(xs)
+    s=0
+    count = 1
+    for x in xs:
+        s = s + x
+        count += 1
+
+    centr = float(s)/float(count)
+
     ###
     # TODO calculate and return centroid
-    return 0
+    return centr
     ##/
 
 def cluster(xs, centroids):
