@@ -40,12 +40,10 @@ def centroid(xs):
 
     # print "legth of list", len(xs)
     s=0
-    count = 1
     for x in xs:
         s = s + x
-        count += 1
 
-    centr = float(s)/float(count)
+    centr = float(s)/float(len(xs))
 
     ###
     # TODO calculate and return centroid
